@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edit as Markdown for Jira: documentation</title>
+<meta name="description" content="Edit Jira issue descriptions and comments as Markdown, with a lossless round trip.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Edit as Markdown for Jira</h1>
+  <p>Edit Jira descriptions and comments as Markdown. Nothing you didn’t touch changes. Free beta.</p>
+  <nav><a href="./">Documentation</a><a href="privacy/">Privacy policy</a></nav>
+</header>
+<main>
+  <h2>What it does</h2>
+  <p>The app opens an issue’s description, or any comment you’re allowed to edit, in a full-screen Markdown editor with a live <strong>Preview</strong> and a <strong>Diff</strong> of exactly what will change. When it opens, it checks that converting the content to Markdown and back reproduces the stored Jira document. Anything Markdown can’t express is kept as a protected item and saved back exactly as it was.</p>
+
+  <h2>How to open it</h2>
+  <ol>
+    <li>Open an issue in Jira Cloud (new issue view).</li>
+    <li>Click <strong>•••</strong> (more actions) at the top right of the issue and choose <strong>Edit as Markdown for Jira</strong>.</li>
+    <li>Pick <em>Description</em> or a comment in the <strong>Edit</strong> menu. Comments are listed by author, date and time, with a short snippet.</li>
+    <li>Edit the text, check <strong>Preview</strong> or <strong>Diff</strong>, then click <strong>Save</strong> (or press <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>S</kbd>). The issue view refreshes.</li>
+  </ol>
+  <p>Panels and task lists are editable as plain text:</p>
+<pre>&gt; [!INFO]
+&gt; Release notes are due on **Friday**.
+
+- [x] Write the changelog
+- [ ] Tag the release</pre>
+  <p>Panel types: <code>[!INFO]</code>, <code>[!NOTE]</code>, <code>[!WARNING]</code>, <code>[!ERROR]</code>, <code>[!SUCCESS]</code>.</p>
+
+  <h2>Locked tokens and blocks</h2>
+  <p>Jira content with no Markdown equivalent is shown as a protected item. You can move or delete it, but its inside isn’t editable in Markdown:</p>
+  <table>
+    <tr><th>You see</th><th>What it is</th></tr>
+    <tr><td><code>⟦@Jane#i1⟧</code></td><td>An inline item: mention, emoji (including custom), status, date, smart link, or text with colour/underline.</td></tr>
+    <tr><td><code>```adf-b2</code> … <code>```</code></td><td>A locked block: expand, media, macro, custom panel, merged-cell table and similar. The block shows a readable summary.</td></tr>
+  </table>
+  <p>If a save would remove a protected item, the app names it and asks first. Edit those items in Jira’s own editor.</p>
+
+  <h2>Good to know</h2>
+  <ul>
+    <li><strong>Permissions:</strong> if you can’t edit the issue or comment, the editor opens read-only and tells you why. Comment restrictions (for example “Administrators”) are kept.</li>
+    <li><strong>Conflicts:</strong> if someone else changed the content while you were editing, the app doesn’t overwrite it. Use <em>Copy my Markdown</em>, then <em>Reload latest</em>.</li>
+    <li><strong>Status line:</strong> “Lossless round trip verified” means an unchanged save stores the same document. “Lossless (only trailing spaces trimmed)” means invisible spaces at the ends of some lines are dropped.</li>
+  </ul>
+
+  <h2>Limitations (beta)</h2>
+  <ul>
+    <li>Jira Cloud only, in the new issue view. Confluence isn’t supported yet.</li>
+    <li>Jira rejects rich text above roughly 200 KB per field. The app warns you as you get close to that.</li>
+    <li>The <kbd>Esc</kbd> key and Jira’s own close button close the editor without asking about unsaved changes. The app’s <strong>Cancel</strong> button does ask.</li>
+    <li>Markdown can’t keep spaces at the very start or end of a line or table cell.</li>
+    <li>Rare content may not round-trip exactly. The app then shows a red warning listing the differences, and won’t save until you tick “Save anyway”.</li>
+  </ul>
+
+  <h2>Privacy</h2>
+  <p>The app runs entirely on Atlassian’s platform. It stores no personal data, sends no data outside Atlassian and runs no analytics. See the <a href="privacy/">privacy policy</a>.</p>
+
+  <h2>Support</h2>
+  <p>Questions, bugs and feedback: <a href="mailto:ozgun@grotesque.ltd">ozgun@grotesque.ltd</a>. Please include the issue type and, if you can, a screenshot of the editor’s status line or warning.</p>
+</main>
+<footer>Grotesque · 14 Bolam Close, Manchester, M23 0HZ, UK</footer>
+</body>
+</html>

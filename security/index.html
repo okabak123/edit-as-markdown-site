@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security: Edit as Markdown for Jira</title>
+<link rel="icon" href="../favicon.png">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <h1>Security statement</h1>
+  <p>Edit as Markdown for Jira</p>
+  <nav><a href="../">Documentation</a><a href="../privacy/">Privacy policy</a><a href="../security/">Security</a></nav>
+</header>
+<main>
+  <p><strong>Last updated:</strong> 13 October 2026</p>
+  <p><strong>Report a vulnerability:</strong> <a href="mailto:security@grotesque.ltd">security@grotesque.ltd</a></p>
+  <h2>Architecture</h2>
+  <ul>
+    <li>Edit as Markdown for Jira is an Atlassian Forge app that qualifies for <strong>Runs on Atlassian</strong>. Atlassian's eligibility check passes for the production version.</li>
+    <li>The app is a Custom UI only. Its code runs in the user's browser inside a sandboxed frame served by Atlassian.</li>
+    <li><strong>No backend:</strong> we operate no servers, and the app has no Forge functions or remote services.</li>
+    <li><strong>No egress:</strong> the app declares no external network permissions. It talks only to the Jira site it is installed on, through Atlassian's own APIs.</li>
+    <li><strong>No storage:</strong> the app uses no Forge storage and keeps no copy of your content. It writes no logs and runs no analytics.</li>
+    <li>No Atlassian credentials, API tokens or passwords are used or stored. Every request is made as the signed-in user, through Atlassian's Forge bridge.</li>
+  </ul>
+  <h2>Permissions (scopes)</h2>
+  <ul>
+    <li>read:jira-work: read the issue description and comments, the issue's edit metadata and your own permissions for the issue.</li>
+    <li>write:jira-work: save the description or comment you edited, only when you press Save.</li>
+    <li>read:jira-user: identify the current user, so only comments you may edit are offered as editable.</li>
+    <li>Jira enforces its normal permissions on every read and write. The app adds a read-only mode when you can't edit, and never widens access.</li>
+  </ul>
+  <h2>Content safety</h2>
+  <ul>
+    <li>The preview renders Markdown with raw HTML disabled, and all dynamic text is escaped.</li>
+    <li>The page has no inline scripts and no relaxed content security policy.</li>
+    <li>Before saving, the app verifies that unchanged content converts back exactly. It shows a diff of every change and asks before removing protected items.</li>
+    <li>If someone else changed the content in the meantime, the app refuses to overwrite it.</li>
+  </ul>
+  <h2>Dependencies</h2>
+  <ul>
+    <li>Runtime dependencies are audited before each release (npm audit, 0 known vulnerabilities at the last release). Vulnerable transitive packages are pinned to fixed versions.</li>
+  </ul>
+  <h2>Reporting a vulnerability</h2>
+  <ul>
+    <li>Email <a href="mailto:security@grotesque.ltd">security@grotesque.ltd</a> with the steps to reproduce, the affected version (shown in Jira under Apps → Manage apps) and the impact. Please don't include customer data you aren't authorised to share.</li>
+    <li>We acknowledge reports within 1 business day (UK time). Fixes follow Atlassian's Security Bug Fix Policy for cloud apps: critical within 10 days, high within 4 weeks, medium within 12 weeks, low within 25 weeks of triage. See <a href="https://developer.atlassian.com/platform/marketplace/security-bugfix-policy/">https://developer.atlassian.com/platform/marketplace/security-bugfix-policy/</a>.</li>
+    <li>We will tell you when the issue is fixed and, if you wish, credit you.</li>
+    <li>If customer data could be affected, we notify Atlassian and affected customers through Atlassian's incident process.</li>
+  </ul>
+  <h2>Related</h2>
+  <ul>
+    <li>Privacy policy: <a href="https://okabak123.github.io/edit-as-markdown-site/privacy/">https://okabak123.github.io/edit-as-markdown-site/privacy/</a></li>
+    <li>Support (non-security): <a href="mailto:support@grotesque.ltd">support@grotesque.ltd</a></li>
+  </ul>
+</main>
+<footer>Grotesque · 14 Bolam Close, Manchester, M23 0HZ, UK · <a href="mailto:support@grotesque.ltd">support@grotesque.ltd</a></footer>
+</body>
+</html>
